@@ -2,75 +2,108 @@ import os
 import re
 from datetime import datetime
 from pathlib import Path
-from html.parser import HTMLParser
-
-class EmailMetadataExtractor(HTMLParser):
-    """Extract metadata from HTML email files."""
-    
-    def __init__(self):
-        super().__init__()
-        self.in_title = False
-        self.title = ""
-        self.metadata = {}
-        self.in_header = False
-        self.current_text = ""
-        
-    def handle_starttag(self, tag, attrs):
-        if tag == "title":
-            self.in_title = True
-        elif tag == "div":
-            for attr, value in attrs:
-                if attr == "class" and "email-header" in value:
-                    self.in_header = True
-                    
-    def handle_endtag(self, tag):
-        if tag == "title":
-            self.in_title = False
-        elif tag == "div":
-            self.in_header = False
-            
-    def handle_data(self, data):
-        if self.in_title:
-            self.title = data.strip()
-        
-        if self.in_header:
-            # Extract metadata from header fields
-            if "Subject:" in data:
-                self.metadata['subject'] = data.replace("Subject:", "").strip()
-            elif "From:" in data:
-                self.metadata['from'] = data.replace("From:", "").strip()
-            elif "Date:" in data:
-                self.metadata['date'] = data.replace("Date:", "").strip()
 
 def extract_email_info(html_file_path):
     """Extract subject, from, and date from HTML email file."""
     try:
         with open(html_file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-            
-        parser = EmailMetadataExtractor()
-        parser.feed(content[:10000])  # Parse only first part for efficiency
+        
+        # Initialize variables
+        subject = "Unknown"
+        from_addr = "Unknown"
+        date_str = "Unknown"
+        
+        # Try to extract from HTML structure using simple string matching
+        # Look for patterns in the HTML content
+        
+        # Extract Subject
+        subject_patterns = [
+            r'<title>(.*?)</title>',
+            r'Subject:</span>\s*(.*?)\s*</div>',
+            r'Subject:</span>\s*(.*?)\s*<',
+            r'<span class="header-label">Subject:</span>\s*(.*?)\s*</div>',
+            r'Subject:\s*(.*?)\s*<',  # Plain text Subject: 
+        ]
+        for pattern in subject_patterns:
+            match = re.search(pattern, content[:5000], re.IGNORECASE | re.DOTALL)
+            if match:
+                subject = match.group(1).strip()
+                # Clean up any HTML entities
+                subject = subject.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+                subject = subject.replace('&quot;', '"').replace('&#39;', "'")
+                if subject and subject != "Unknown":
+                    break
+        
+        # Extract From
+        from_patterns = [
+            r'From:</span>\s*(.*?)\s*</div>',
+            r'From:</span>\s*(.*?)\s*<',
+            r'<span class="header-label">From:</span>\s*(.*?)\s*</div>',
+            r'From:\s*(.*?)\s*<',  # Plain text From:
+        ]
+        for pattern in from_patterns:
+            match = re.search(pattern, content[:5000], re.IGNORECASE | re.DOTALL)
+            if match:
+                from_addr = match.group(1).strip()
+                # Clean up any HTML entities
+                from_addr = from_addr.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+                from_addr = from_addr.replace('&quot;', '"').replace('&#39;', "'")
+                if from_addr and from_addr != "Unknown":
+                    break
+        
+        # Extract Date
+        date_patterns = [
+            r'Date:</span>\s*(.*?)\s*</div>',
+            r'Date:</span>\s*(.*?)\s*<',
+            r'<span class="header-label">Date:</span>\s*(.*?)\s*</div>',
+            r'Date:\s*(.*?)\s*<',  # Plain text Date:
+        ]
+        for pattern in date_patterns:
+            match = re.search(pattern, content[:5000], re.IGNORECASE | re.DOTALL)
+            if match:
+                date_str = match.group(1).strip()
+                # Clean up any HTML entities
+                date_str = date_str.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+                if date_str and date_str != "Unknown":
+                    break
+        
+        # Fallback: Use filename for subject if extraction failed
+        filename = os.path.basename(html_file_path)
+        if subject == "Unknown" or subject == "No Subject" or not subject or len(subject) < 3:
+            # Remove .html extension and use filename as subject
+            subject = filename.replace('.html', '')
+            # Clean up common email prefixes but preserve content
+            subject = re.sub(r'^\[(.*?)\]\s*', r'[\1] ', subject)  # Keep [list-name] but clean spacing
         
         # Get file info
         file_stats = os.stat(html_file_path)
         file_size = file_stats.st_size
         
-        # Clean up extracted data
-        subject = parser.metadata.get('subject', parser.title or 'No Subject')
-        from_addr = parser.metadata.get('from', 'Unknown')
-        date_str = parser.metadata.get('date', 'Unknown')
-        
         return {
-            'filename': os.path.basename(html_file_path),
-            'subject': subject[:100],  # Limit subject length
-            'from': from_addr[:50],  # Limit from length
+            'filename': filename,
+            'subject': subject[:150],  # Limit subject length
+            'from': from_addr[:100],  # Limit from length
             'date': date_str[:50],  # Limit date length
             'size': file_size,
             'modified': datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M')
         }
     except Exception as e:
         print(f"Error processing {html_file_path}: {e}")
-        return None
+        # Return basic info even if parsing fails
+        filename = os.path.basename(html_file_path)
+        try:
+            file_stats = os.stat(html_file_path)
+            return {
+                'filename': filename,
+                'subject': filename.replace('.html', ''),
+                'from': 'Unknown',
+                'date': 'Unknown',
+                'size': file_stats.st_size,
+                'modified': datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M')
+            }
+        except:
+            return None
 
 def format_file_size(size):
     """Convert file size to human-readable format."""
@@ -80,7 +113,7 @@ def format_file_size(size):
         size /= 1024.0
     return f"{size:.1f} TB"
 
-def generate_index_html(html_folder):
+def generate_index_html(html_folder, debug=False):
     """Generate index.html for all HTML files in the folder."""
     
     print(f"Scanning folder: {html_folder}")
@@ -90,16 +123,21 @@ def generate_index_html(html_folder):
     for file in os.listdir(html_folder):
         if file.endswith('.html') and file != 'index.html':
             file_path = os.path.join(html_folder, file)
-            print(f"Processing: {file}")
+            if debug:
+                print(f"\nProcessing: {file}")
             email_info = extract_email_info(file_path)
             if email_info:
                 email_info['size_formatted'] = format_file_size(email_info['size'])
+                if debug:
+                    print(f"  Subject: {email_info['subject'][:50]}...")
+                    print(f"  From: {email_info['from'][:50]}...")
+                    print(f"  Date: {email_info['date'][:50]}...")
                 html_files.append(email_info)
     
-    print(f"Found {len(html_files)} email files")
+    print(f"\nFound {len(html_files)} email files")
     
-    # Sort by filename (you can change to sort by date if preferred)
-    html_files.sort(key=lambda x: x['filename'])
+    # Sort by subject (you can change to sort by date or filename if preferred)
+    html_files.sort(key=lambda x: x['subject'].lower())
     
     # Get the folder name for the HTML links
     folder_name = os.path.basename(html_folder) if html_folder != "." else "html"
@@ -426,10 +464,14 @@ def generate_index_html(html_folder):
     print(f"    📁 {folder_name}/")
     print(f"      📄 {len(html_files)} email files")
     print(f"\nJust drag and drop the parent folder to Netlify.")
+    print(f"\nTip: If subjects show 'Unknown', set debug_mode = True in the script to diagnose.")
 
 def main():
     # Path to your html folder
     html_folder = "html"  # Change this to your actual html folder path (e.g., "html", "html_output", "email_html")
+    
+    # Set to True to see detailed processing info
+    debug_mode = False
     
     # Check if the folder exists
     if not os.path.exists(html_folder):
@@ -450,7 +492,7 @@ def main():
             return
     
     # Generate the index file
-    generate_index_html(html_folder)
+    generate_index_html(html_folder, debug=debug_mode)
 
 if __name__ == "__main__":
     main()
