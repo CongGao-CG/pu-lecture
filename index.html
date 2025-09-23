@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Archive - 22 Messages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .search-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        
+        #searchInput:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+        
+        th:hover {
+            background: #e9ecef;
+        }
+        
+        th.sorted-asc::after {
+            content: ' ↑';
+            color: #667eea;
+        }
+        
+        th.sorted-desc::after {
+            content: ' ↓';
+            color: #667eea;
+        }
+        
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .index {
+            color: #999;
+            font-size: 0.9rem;
+            width: 50px;
+        }
+        
+        .subject a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .subject a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .from {
+            color: #555;
+        }
+        
+        .date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .size {
+            color: #999;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 8px 5px;
+            }
+            
+            .size, .index {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Email Archive</h1>
+            <div class="stats">Total: 22 messages</div>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search emails by subject, sender, or date...">
+        </div>
+        
+        <div class="table-container">
+            <table id="emailTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)" class="index">#</th>
+                        <th onclick="sortTable(1)" class="subject">Subject</th>
+                        <th onclick="sortTable(2)" class="from">From</th>
+                        <th onclick="sortTable(3)" class="date">Date</th>
+                        <th onclick="sortTable(4)" class="size">Size</th>
+                    </tr>
+                </thead>
+                <tbody id="emailTableBody">
+                    
+        <tr>
+            <td class="index">1</td>
+            <td class="subject"><a href="html/Call for AI Seed Grant Proposals.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">48.3 KB</td>
+        </tr>
+        <tr>
+            <td class="index">2</td>
+            <td class="subject"><a href="html/Environmental events at HMEI and around campus, Sept. 22-26.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">26.9 KB</td>
+        </tr>
+        <tr>
+            <td class="index">3</td>
+            <td class="subject"><a href="html/Final Call – Deadline Extended [CALL FOR SPEAKERS] Princeton AI Research Collaboration Symposium.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">37.2 KB</td>
+        </tr>
+        <tr>
+            <td class="index">4</td>
+            <td class="subject"><a href="html/INVITATION- October 1 - Chiquita Brooks-LaSure - Dean’s Leadership Series.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">45.4 KB</td>
+        </tr>
+        <tr>
+            <td class="index">5</td>
+            <td class="subject"><a href="html/Princeton Engineering Events Newsletter- September 22 - 29, 2025.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">228.5 KB</td>
+        </tr>
+        <tr>
+            <td class="index">6</td>
+            <td class="subject"><a href="html/REMINDER TONIGHT - September 17 @5pm-  Jeannie Suk Gersen on Our Civil Rights Revolution.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">7.2 KB</td>
+        </tr>
+        <tr>
+            <td class="index">7</td>
+            <td class="subject"><a href="html/The results of your email commands.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">2.2 KB</td>
+        </tr>
+        <tr>
+            <td class="index">8</td>
+            <td class="subject"><a href="html/Welcome to the -Theory-Read- mailing list.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">2.5 KB</td>
+        </tr>
+        <tr>
+            <td class="index">9</td>
+            <td class="subject"><a href="html/Who's At The Podium- Public Events At Princeton SPIA.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">71.3 KB</td>
+        </tr>
+        <tr>
+            <td class="index">10</td>
+            <td class="subject"><a href="html/You're Invited! AI Lab Research Collaboration Symposium.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">43.2 KB</td>
+        </tr>
+        <tr>
+            <td class="index">11</td>
+            <td class="subject"><a href="html/Your confirmation is needed to join the theory-read@lists.cs.princeton.edu mailing list..html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">2.8 KB</td>
+        </tr>
+        <tr>
+            <td class="index">12</td>
+            <td class="subject"><a href="html/[ORFE-Seminars] Next Week's ORFE Department Colloquia- Tuesday, September 23, 2025 at 4-30 PM- Dimitris Bertsimas, MIT.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">6.1 KB</td>
+        </tr>
+        <tr>
+            <td class="index">13</td>
+            <td class="subject"><a href="html/[ORFE-Seminars] Today's ORFE Department Colloquium- Tuesday, September 23, 2025 at 4-30 PM- Dimitris Bertsimas, MIT.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">8.1 KB</td>
+        </tr>
+        <tr>
+            <td class="index">14</td>
+            <td class="subject"><a href="html/[ORFE-Seminars] Today's S.S. Wilks Memorial Seminar in Statistics- Monday, September 22, 2025 at 12-15 PM- Xinghua Zheng, Hong Kong University of Science and Technology.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">6.6 KB</td>
+        </tr>
+        <tr>
+            <td class="index">15</td>
+            <td class="subject"><a href="html/[ORFE-Seminars] Tomorrow's ORFE Department Colloquium- Tuesday, September 23, 2025 at 4-30 PM- Dimitris Bertsimas, MIT.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">8.0 KB</td>
+        </tr>
+        <tr>
+            <td class="index">16</td>
+            <td class="subject"><a href="html/[Theory-Read] CSDM Seminars - Week of 9-22-25.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">10.1 KB</td>
+        </tr>
+        <tr>
+            <td class="index">17</td>
+            <td class="subject"><a href="html/[Theory-Read] Kewen Wu at Theory Lunch this Friday!.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">7.0 KB</td>
+        </tr>
+        <tr>
+            <td class="index">18</td>
+            <td class="subject"><a href="html/[Theory-Read] Meet Kewen Wu this Friday!.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">3.3 KB</td>
+        </tr>
+        <tr>
+            <td class="index">19</td>
+            <td class="subject"><a href="html/[Theory-Read] Meet Shay Moran this Friday!.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">3.1 KB</td>
+        </tr>
+        <tr>
+            <td class="index">20</td>
+            <td class="subject"><a href="html/[Theory-Read] Re- Shay Moran at Theory Lunch this Friday!.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">7.1 KB</td>
+        </tr>
+        <tr>
+            <td class="index">21</td>
+            <td class="subject"><a href="html/[talks] Barak Nehoran will present his FPO -Separations of Fundamental Quantum Properties and Their Role in Shaping Cryptography Beyond Classical Limits- on October 9, 2025 at 12-30pm in CS 402.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">5.2 KB</td>
+        </tr>
+        <tr>
+            <td class="index">22</td>
+            <td class="subject"><a href="html/[talks] ORFE Colloquia- Tuesday, Sept 23, at 4-30PM- Dimitris Bertsimas, MIT.html"></a></td>
+            <td class="from">Unknown</td>
+            <td class="date">Unknown</td>
+            <td class="size">3.9 KB</td>
+        </tr>
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                No emails found matching your search.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableBody = document.getElementById('emailTableBody');
+            const rows = tableBody.getElementsByTagName('tr');
+            let visibleCount = 0;
+            
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const text = row.textContent.toLowerCase();
+                
+                if (text.includes(searchValue)) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+            
+            // Show/hide "no results" message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+                tableBody.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                tableBody.style.display = '';
+            }
+        });
+        
+        // Sort functionality
+        let sortOrder = {};
+        
+        function sortTable(columnIndex) {
+            const table = document.getElementById('emailTable');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            const headers = table.getElementsByTagName('th');
+            
+            // Toggle sort order
+            if (!sortOrder[columnIndex]) {
+                sortOrder[columnIndex] = 'asc';
+            } else {
+                sortOrder[columnIndex] = sortOrder[columnIndex] === 'asc' ? 'desc' : 'asc';
+            }
+            
+            // Remove sort indicators from all headers
+            for (let h of headers) {
+                h.classList.remove('sorted-asc', 'sorted-desc');
+            }
+            
+            // Add sort indicator to current header
+            headers[columnIndex].classList.add('sorted-' + sortOrder[columnIndex]);
+            
+            // Sort rows
+            rows.sort((a, b) => {
+                const aValue = a.getElementsByTagName('td')[columnIndex].textContent.trim();
+                const bValue = b.getElementsByTagName('td')[columnIndex].textContent.trim();
+                
+                let comparison = 0;
+                if (columnIndex === 0 || columnIndex === 4) {
+                    // Numeric sort for index and size
+                    comparison = parseFloat(aValue) - parseFloat(bValue);
+                } else {
+                    // String sort for other columns
+                    comparison = aValue.localeCompare(bValue);
+                }
+                
+                return sortOrder[columnIndex] === 'asc' ? comparison : -comparison;
+            });
+            
+            // Reattach sorted rows
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>
