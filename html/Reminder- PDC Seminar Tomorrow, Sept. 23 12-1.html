@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style> </head> <body dir="ltr"> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof"> Hi all,</div> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof"> <br> </div> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof"> Just a reminder that you have RSVP'd to attend the PDC seminar tomorrow, <b>Sept. 23rd 12-1 in Julis Romo Rabinowitz 397</b>. <span style="background-color: rgb(255, 255, 255);">Lunch will be served, but please remember to bring your own water bottle.</span></div> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof"> <br> </div> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof"> Looking forward to the talks and discussion,</div> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof"> Lindsey and Mika</div> <div id="Signature"> <div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);"> <br> </div> <p style="margin: 0in 0in 0.0001pt; font-family: Calibri, sans-serif; font-size: 11pt;"> <span style="color: rgb(0, 0, 0);">Princeton Postdoctoral Council</span></p> <p style="margin: 0in 0in 0.0001pt; font-family: Calibri, sans-serif; font-size: 11pt;"> <span style="color: rgb(0, 0, 0);">web: <a style="margin-top: 0px; margin-bottom: 0px;" class="OWAAutoLink" id="OWA24cfc929-5c67-2ed2-6e0d-7090a5370a2d" href="https://pdc.princeton.edu/"> https://pdc.princeton.edu/</a></span></p> <p style="margin: 0in 0in 0.0001pt; font-family: Calibri, sans-serif; font-size: 11pt;"> <span style="color: rgb(0, 0, 0);">slack: <a style="margin-top: 0px; margin-bottom: 0px;" title="https://join.slack.com/t/princetonpost-r4c3425/shared_invite/zt-tymxr0qq-eJjBwCvHdYMqM4qqAJnmNg" class="OWAAutoLink" id="OWAfd04809f-42b4-2235-ab4a-db1eb21e231d" href="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fjoin.slack.com%2Ft%2Fprincetonpost-r4c3425%2Fshared_invite%2Fzt-tymxr0qq-eJjBwCvHdYMqM4qqAJnmNg&amp;data=05%7C02%7C%40princeton.edu%7Ca287439fe32a4485163708ddf9f60de3%7C2ff601167431425db5af077d7791bda4%7C0%7C0%7C638941557384671310%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=dmWGdK2lIhvgEvSuq%2By7mnGA4Nc8Ls%2Ba%2BcL3dhD884I%3D&amp;reserved=0" originalsrc="https://join.slack.com/t/princetonpost-r4c3425/shared_invite/zt-tymxr0qq-eJjBwCvHdYMqM4qqAJnmNg"> invite link</a></span></p> </div> </body> </html>
         </div>
+        
     </div>
 </body>
 </html>

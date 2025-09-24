@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <html><head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head> <body><div id="zimbraEditorContainer" style="font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000000" class="2"><div data-marker="__QUOTED_TEXT__"><div class="WordSection1"><p class="MsoNormal"><span style="font-size: 12pt;">Next Week’s ORFE Department Colloquium</span></p> <p style="margin-right:0in;margin-bottom:6pt;margin-left:0in"> <strong><span style="font-family:'aptos' , sans-serif">Date &amp; Time:</span></strong> Tuesday, September 23, 2025 at 4:30 PM</p> <p style="margin-right:0in;margin-bottom:6pt;margin-left:0in"> <strong><span style="font-family:'aptos' , sans-serif;background:yellow">Location:</span></strong><span style="background:yellow"> 104 - Computer Science</span></p> <p style="margin-right:0in;margin-bottom:6pt;margin-left:0in"> <strong><span style="font-family:'aptos' , sans-serif">Speaker:</span></strong> <a href="https://orfe.princeton.edu/events/2025/dimitris-bertsimas-mit" target="_blank" rel="nofollow noopener noreferrer"> Dimitris Bertsimas, MIT</a></p> <p style="margin-right:0in;margin-bottom:6pt;margin-left:0in"> <strong><span style="font-family:'aptos' , sans-serif">Title:</span></strong> A vision of Customized and Adaptive Online Education using Gen-Ai</p> <p style="margin-right:0in;margin-bottom:6pt;margin-left:0in"> <strong><span style="font-family:'aptos' , sans-serif">Abstract:</span></strong> I present a vision for online education that adapts the context, the duration, the language and the depth of a lecture to the learner. This is a vision of personalized education that, in my opinion, will revolutionize education and will change universities in the years to come.&nbsp; I outline the current efforts in these directions within Open Learning at MIT.&nbsp;&nbsp;</p> <p class="MsoNormal">&nbsp;</p> </div><br></div></div></body></html>
         </div>
+        
     </div>
 </body>
 </html>

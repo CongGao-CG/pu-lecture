@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head> <body><div style="font-family: garamond,new york,times,serif; font-size: 12pt; color: #000000"><div data-marker="__QUOTED_TEXT__"><div id="zimbraEditorContainer" style="font-family:'garamond' , 'new york' , 'times' , serif;font-size:12pt;color:#000000" class="1"><div><div>Barak Nehoran will present his FPO &quot;Separations of Fundamental Quantum Properties and Their Role in Shaping Cryptography Beyond Classical Limits&quot; on October 9, 2025 at 12:30pm in CS 402</div><br><div>Examiners: Ran Raz (adviser), Mark Zhandry (adviser), and Alex Lombardi</div><div>Readers: Gillat Kol and Sarang Gopalakrishnan</div><div><br data-mce-bogus="1"></div></div><div>All are welcome to attend.&nbsp; Please see abstract below.</div><div><br><div>Quantum computers will break much of the cryptography that secures the internet, but they will also enable entirely new cryptographic frameworks with security based on the principles of quantum mechanics. Quantum mechanics prevents certain information processing tasks: unlike classical data, quantum information cannot generally be recognized, cannot be written down on paper (formally called “telegraphed”), and cannot be copied (formally, “cloned”). Some quantum information classicizes, or resembles its classical counterpart, by allowing one or more of these tasks, while other information remains fully quantum and resists all such classicizing tasks. We argue that differences between such classicizing tasks, especially cases when one task is efficient but another is not, are essential for enabling quantum cryptography with no classical analog.</div><div><br data-mce-bogus="1"></div><div>The earliest quantum cryptography explored was quantum money, which is quantum information that can be recognized efficiently but not cloned. Wiesner first defined it in 1968, with a public-key version introduced by Bennett, Brassard, Breidbart, and Wiesner in 1982. Many proposals for public-key quantum money have appeared over the past 43 years, yet proving the security of any of them has remained challenging. We use new tools from the mathematics of group representations and group actions to give the first secure construction of public-key quantum money that does not rely on obfuscation, and the first to also offer collision resistance. We also introduce quantum fire, which describes quantum information that can be cloned efficiently but not telegraphed. Like fire, it can be spread indefinitely from a single source, but only as long as it is kept alive. We provide a secure construction of quantum fire in the black-box setting and give a framework for a potential construction in the plain model. We further show that classicizing tasks can also characterize complexity classes involving efficient quantum verification, offering a new perspective on the fundamental question of the relative power of classical and quantum proofs.</div></div></div></div><div><br></div></div></body></html>
         </div>
+        
     </div>
 </body>
 </html>

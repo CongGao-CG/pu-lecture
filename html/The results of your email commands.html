@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <pre>The results of your email command are provided below. - Original message details: From:  Subject: Date: Wed, 17 Sep 2025 23:22:44 +0000 Message-ID: &lt;BN6PR04MB0932781A29B2C7A43EA06C9D9417A@BN6PR04MB0932.namprd04.prod.outlook.com&gt; - Results: Ignoring non-text/plain MIME parts Confirmed - Done.</pre>
         </div>
+        
     </div>
 </body>
 </html>

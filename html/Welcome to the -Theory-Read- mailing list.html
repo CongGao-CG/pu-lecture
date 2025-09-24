@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <pre>Welcome to the &quot;Theory-Read&quot; mailing list! To post to this list, send your message to: theory-read@lists.cs.princeton.edu You can unsubscribe or make adjustments to your options via email by sending a message to: theory-read-request@lists.cs.princeton.edu with the word &#x27;help&#x27; in the subject or body (don&#x27;t include the quotes), and you will get back a message with instructions. You will need your password to change your options, but for security purposes, this password is not included here. If you have forgotten your password you will need to reset it via the web UI.</pre>
         </div>
+        
     </div>
 </body>
 </html>

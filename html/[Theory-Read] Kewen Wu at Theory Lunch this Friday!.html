@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><div dir="ltr">Hi everyone,<div><br></div><div dir="auto">We are delighted to have<span class="gmail-Apple-converted-space">&nbsp;Kewen Wu</span><span class="gmail-Apple-converted-space">&nbsp;</span>from IAS at Theory Lunch this Friday, September 26! Please note the time and the location for this week.<br><br>Food will be served at 12:00 pm, and the talk will start at 12:15 pm. Please come early for lunch so that the talk starts on time.<br><br>Location: CS 105.&nbsp;Note that there might be another event in CS 105 right before Theory Lunch. If the room is not empty when you arrive please wait in the lobby area until the room becomes available.<br><br>Zoom link:&nbsp;<a href="https://princeton.zoom.us/j/93902072577" target="_blank">https://princeton.zoom.us/j/93902072577</a><br><br>The details of the talk are as follows.</div><div dir="auto"><br></div><div dir="auto"><div dir="auto">________</div><div dir="auto"><br></div><div dir="auto"><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal">Title: Locally Sampleable (Uniform) Symmetric Distributions</p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal"><br></p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal">Abstract:</p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal"><br></p><div style="color:rgb(0,0,0)">We characterize the power of constant-depth Boolean circuits in generating uniform symmetric distributions. Let f be a Boolean function where each output bit of f depends only on O(1) input bits. Assume the output distribution of f on uniform input bits is close to a uniform distribution D with a symmetric support. We show that D is essentially one of the following six possibilities: (1) point distribution on the all-zero string, (2) point distribution on the all-one string, (3) uniform over all-zero or all-one, (4) uniform over strings with even Hamming weights, (5) uniform over strings with odd Hamming weights, and (6) uniform over all strings. This confirms a conjecture of Filmus, Leigh, Riazanov, and Sokolov (RANDOM 2023). Going beyond, we also obtain near-tight classification results for locally sampleable symmetric distribution and propose a conjectured full classification.</div><div style="color:rgb(0,0,0)"><br></div><div style="color:rgb(0,0,0)">Joint works with Daniel Kane and Anthony Ostuni</div><div style="color:rgb(0,0,0)"><br></div><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal">________</p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal"><br></p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal">We hope to see you there!</p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal"><br></p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal">Best,</p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal">Elena, Pachara, and Sebastian</p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal"><br></p><p style="margin:0px;line-height:normal;font-size-adjust:none;font-kerning:auto;font-variant-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-feature-settings:normal"><br></p><p></p><br class="gmail-Apple-interchange-newline"></div></div></div>
         </div>
+        
     </div>
 </body>
 </html>

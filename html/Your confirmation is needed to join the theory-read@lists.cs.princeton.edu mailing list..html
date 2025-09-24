@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <pre>Email Address Registration Confirmation Hello, this is the GNU Mailman server at lists.cs.princeton.edu. We have received a registration request for the email address Before you can start using GNU Mailman at this site, you must first confirm that this is your email address. You can do this by replying to this message. Or you should include the following line -- and only the following line -- in a message to theory-read-request@lists.cs.princeton.edu: confirm de219138d9603c5df6d3715cf7e636304a408ee7 Note that simply sending a `reply&#x27; to this message should work from most mail readers. If you do not wish to register this email address, simply disregard this message. If you think you are being maliciously subscribed to the list, or have any other questions, you may contact theory-read-owner@lists.cs.princeton.edu</pre>
         </div>
+        
     </div>
 </body>
 </html>

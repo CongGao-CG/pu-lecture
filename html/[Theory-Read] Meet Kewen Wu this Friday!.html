@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #f5f5f5;
@@ -37,9 +37,54 @@
             line-height: 1.6;
             color: #333;
         }
+        .email-body img {
+            /* Allow images to display at natural size up to container width */
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+            margin: 10px auto;
+        }
+        /* Ensure images in tables also respect aspect ratio */
+        .email-body table {
+            max-width: 100%;
+        }
+        .email-body table img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Center images that are smaller than container */
+        .email-body p > img,
+        .email-body div > img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
         pre {
             white-space: pre-wrap;
             word-wrap: break-word;
+        }
+        .attachments {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .attachments h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .attachments ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .attachments li {
+            padding: 5px 0;
+            color: #666;
+            font-size: 13px;
+        }
+        .attachments li:before {
+            content: "📎 ";
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -62,6 +107,7 @@
         <div class="email-body">
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><div dir="ltr">Hi everyone,<div><br></div><div>We have Kewen Wu coming this week for Theory Lunch! Kewen is a postdoc at the School of Mathematics at the IAS and is broadly interested in theoretical computer science, with a recent focus on provable quantum advantages, quantum cryptography, and boolean function analysis. He is available for meetings on Friday afternoon, as well as dinner, and would love to meet people. For anyone who is interested, <a href="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1lhCCn-3NnFMDwz6gGfd12oV7FBZMcLy3cEiEoxa_6SY%2Fedit%3Fusp%3Dsharing&amp;data=05%7C02%7C%40princeton.edu%7Cff61f4e5c5be43e7ebe408ddfa8a26d8%7C2ff601167431425db5af077d7791bda4%7C0%7C0%7C638942193474813625%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=z%2BIHfubLQpmydRwj955cbbbk4EhMq%2BsdaC5QDXqfSrw%3D&amp;reserved=0" originalsrc="https://docs.google.com/spreadsheets/d/1lhCCn-3NnFMDwz6gGfd12oV7FBZMcLy3cEiEoxa_6SY/edit?usp=sharing">here</a> is a sign up sheet for meetings. Also, please email me directly if you'd be interested in joining for dinner.</div><div><br></div><div>Best,</div><div>Elena, Pachara, and Sebastian</div></div>
         </div>
+        
     </div>
 </body>
 </html>
